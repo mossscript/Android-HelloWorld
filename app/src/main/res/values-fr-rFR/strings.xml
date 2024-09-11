@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="hello_world">Bonjour le monde</string>
+    <string name="hello_android">Bonjour Android</string>
+    <string name="press_me">Presse moi</string>
+</resources>
