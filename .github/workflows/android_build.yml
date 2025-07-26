@@ -10,18 +10,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # نصب خودکار JDK + Android SDK + Gradle
-      - name: Set up Android
+      # نصب JDK 17
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # نصب Android SDK
+      - name: Setup Android
         uses: android-actions/setup-android@v2
 
-      # کامپایل با Gradle
-      - name: Build APK
-        uses: gradle/gradle-build-action@v3
-        with:
-          gradle-version: wrapper # از gradle-wrapper.properties استفاده می‌کند
-          arguments: assembleDebug --stacktrace --no-daemon
+      # ساخت gradlew با دستور gradle wrapper
+      - name: Generate Gradle Wrapper
+        run: |
+          gradle wrapper --gradle-version 8.4 --distribution-type bin
+          chmod +x gradlew  
 
-      # آپلود APK
+      # کامپایل با gradlew ساخته‌شده
+      - name: Build APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      # آپلود خروجی
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
