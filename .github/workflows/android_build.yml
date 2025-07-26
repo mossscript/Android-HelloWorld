@@ -1,0 +1,54 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # نصب Android SDK با اجازه‌های مورد نیاز
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          ndk-version: '25.1.8937393'
+          cmake-version: '3.22.1'
+
+      # تنظیم JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # اعمال نسخه Gradle از wrapper و جلوگیری از نسخه پیش‌فرض
+      - name: Validate Gradle Version
+        run: |
+          ./gradlew --version
+          echo "GRADLE_VERSION=$(./gradlew --version | grep 'Gradle' | awk '{print $2}')" >> $GITHUB_ENV
+
+      # ساخت پروژه
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug --no-daemon
+
+      # آپلود خروجی‌ها با ورژن جدید
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 5
+
+      # آپلود گزارش‌های build
+      - name: Upload Build Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-reports
+          path: app/build/reports/**
+          retention-days: 5
+          
