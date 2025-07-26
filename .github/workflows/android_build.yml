@@ -12,43 +12,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # نصب Android SDK با اجازه‌های مورد نیاز
+      # نصب Android SDK + NDK + CMake
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
         with:
+          sdk-platform: android-34
+          sdk-build-tools: 34.0.0
           ndk-version: '25.1.8937393'
           cmake-version: '3.22.1'
 
       # تنظیم JDK 17
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # اعمال نسخه Gradle از wrapper و جلوگیری از نسخه پیش‌فرض
-      - name: Validate Gradle Version
+      # نصب Gradle 8.4 (بدون نیاز به gradlew)
+      - name: Install Gradle
         run: |
-          ./gradlew --version
-          echo "GRADLE_VERSION=$(./gradlew --version | grep 'Gradle' | awk '{print $2}')" >> $GITHUB_ENV
+          wget https://services.gradle.org/distributions/gradle-8.4-bin.zip -P /tmp
+          unzip -q /tmp/gradle-8.4-bin.zip -d /tmp/
+          echo "$/tmp/gradle-8.4/bin" >> $GITHUB_PATH
 
-      # ساخت پروژه
+      # ساخت پروژه با Gradle
       - name: Build with Gradle
-        run: ./gradlew assembleDebug --no-daemon
+        run: |
+          gradle --version
+          gradle assembleDebug --no-daemon
 
-      # آپلود خروجی‌ها با ورژن جدید
+      # آپلود APK
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 5
-
-      # آپلود گزارش‌های build
-      - name: Upload Build Reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-reports
-          path: app/build/reports/**
-          retention-days: 5
-          
