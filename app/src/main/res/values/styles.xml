@@ -1,18 +1,22 @@
-<!-- res/values/styles.xml -->
-<style name="AppTheme" parent="android:Theme">
-    <!-- 1. حذف ActionBar/TitleBar -->
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowActionBar">false</item>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 2. StatusBar شفاف (برای API 19+) -->
-    <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
-    
-    <!-- 3. NavigationBar همرنگ پس‌زمینه -->
-    <item name="android:navigationBarColor" tools:targetApi="21">@color/background</item>
+    <!-- تم پایه برای API 14+ -->
+    <style name="AppTheme" parent="android:Theme">
+        <!-- 1. حذف TitleBar -->
+        <item name="android:windowNoTitle">true</item>
+        
+        <!-- 2. رنگ پس‌زمینه -->
+        <item name="android:windowBackground">@color/background</item>
+        
+        <!-- 3. رنگ متن -->
+        <item name="android:textColor">@color/on_background</item>
+        
+        <!-- 4. تنظیمات StatusBar برای API 19+ -->
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        
+        <!-- 5. رنگ NavigationBar برای API 21+ -->
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background</item>
+    </style>
 
-    <!-- 4. رنگ کلی پس‌زمینه -->
-    <item name="android:windowBackground">@color/background</item>
-
-    <!-- 5. رنگ متن پیش‌فرض -->
-    <item name="android:textColor">@color/on_background</item>
-</style>
+</resources>
