@@ -1,23 +1,18 @@
 <!-- res/values/styles.xml -->
-<style name="AppTheme" parent="android:Theme.DeviceDefault.NoActionBar">
-    <!-- 1. حذف ActionBar/TitleBar (با parent "NoActionBar" انجام شده) -->
+<style name="AppTheme" parent="android:Theme">
+    <!-- 1. حذف ActionBar/TitleBar -->
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowActionBar">false</item>
 
-    <!-- 2. StatusBar شفاف -->
-    <item name="android:windowTranslucentStatus">true</item>
-    <item name="android:statusBarColor">@android:color/transparent</item>
-
-    <!-- 3. NavigationBar همرنگ پس‌زمینه (مات) -->
-    <item name="android:navigationBarColor">@color/background</item>
+    <!-- 2. StatusBar شفاف (برای API 19+) -->
+    <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
+    
+    <!-- 3. NavigationBar همرنگ پس‌زمینه -->
+    <item name="android:navigationBarColor" tools:targetApi="21">@color/background</item>
 
     <!-- 4. رنگ کلی پس‌زمینه -->
     <item name="android:windowBackground">@color/background</item>
 
     <!-- 5. رنگ متن پیش‌فرض -->
     <item name="android:textColor">@color/on_background</item>
-
-    <!-- 6. اجازه رفتن محتوا زیر StatusBar -->
-    <item name="android:fitsSystemWindows">false</item>
-
-    <!-- 7. تنظیم رنگ آیکون‌های StatusBar برای اندروید 6+ -->
-    <item name="android:windowLightStatusBar">true</item>
 </style>
