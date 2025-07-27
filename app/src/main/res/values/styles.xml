@@ -1,5 +1,4 @@
 <style name="AppTheme" parent="Theme.Material.NoActionBar">
-    <item name="android:windowNoTitle">true</item>
     <item name="android:windowTranslucentStatus">true</item>
     <item name="android:statusBarColor">@android:color/transparent</item>
     <item name="android:navigationBarColor">@color/background</item>
