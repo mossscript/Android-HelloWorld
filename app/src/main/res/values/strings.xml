@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-   <string name="app_name">Hello Android</strings>
-   <string name="message_1">Hello Evrybody! This is my first Andriod app taht made with Kotlin! </strings>
+   <string name="app_name">Hello Android</string>
+   <string name="message_1">Hello Evrybody! This is my first Andriod app taht made with Kotlin! </string>
 </resources>
