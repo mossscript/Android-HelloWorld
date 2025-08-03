@@ -9,6 +9,7 @@
         android:id="@+id/helloText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/on_background"
         android:text="@string/message"
         android:textSize="24sp"/>
 </LinearLayout>
