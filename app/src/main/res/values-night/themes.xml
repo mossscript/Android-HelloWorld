@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.AppTheme" parent="android:Theme.Black.NoTitleBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/background</item>
-        <item name="android:windowBackground">@color/background</item>
-    </style>
+	<style name="Theme.AppTheme" parent="android:Theme.Black.NoTitleBar">    
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:navigationBarColor">@color/background</item>
+		<item name="android:windowBackground">@color/background</item>
+		<item name="android:textColor">@color/on_background</item>
+	</style>
 </resources>
